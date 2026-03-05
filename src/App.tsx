@@ -28,6 +28,8 @@ export const App: React.FC = () => {
     return `button is-light ${sortType === type ? 'is-active' : ''}`;
   };
 
+  const isModified = goods.join() !== goodsFromServer.join();
+
   const sortAlphabetically = () => {
     const sorted = [...goods].sort((a, b) => a.localeCompare(b));
 
@@ -79,13 +81,15 @@ export const App: React.FC = () => {
           Reverse
         </button>
 
-        <button
-          type="button"
-          className="button is-danger is-light"
-          onClick={resetGoods}
-        >
-          Reset
-        </button>
+        {isModified && (
+          <button
+            type="button"
+            className="button is-danger is-light"
+            onClick={resetGoods}
+          >
+            Reset
+          </button>
+        )}
       </div>
 
       <ul>
